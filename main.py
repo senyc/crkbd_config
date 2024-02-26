@@ -28,9 +28,13 @@ keyboard.modules.append(split)
 """ OLED configuration """
 
 oled_ext = Oled(
-    OledData(image={0: OledReactionType.STATIC, 1: ["1.bmp"]}),
-    toDisplay=OledDisplayMode.IMG,
-    flip=True,
+    OledData(
+        corner_one={0:OledReactionType.STATIC,1:["layer"]},
+        corner_two={0:OledReactionType.LAYER,1:["1","2"]},
+        corner_three={0:OledReactionType.STATIC,1:["Corne"]},
+        corner_four={0:OledReactionType.LAYER,1:["qwerty","nums"]}
+    ),
+    toDisplay=OledDisplayMode.TXT,flip=False
 )
 keyboard.extensions.append(oled_ext)
 
