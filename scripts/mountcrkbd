@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "mounting drive $(sudo fdisk -l | grep 15M | cut -d' ' -f1)"
+
+sudo mount -o uid=1000 "$(sudo fdisk -l | grep 15M | cut -d' ' -f1)" ~/blok
