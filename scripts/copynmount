@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "mounting drive $(sudo fdisk -l | grep 15M | cut -f1)"
+
+sudo mount -o uid=1000 "$(sudo fdisk -l | grep 15M | cut -f1)" ~/blok
+
+echo "Copying all files over from repo"
+
+cp -r ~/crkbd_kmk ~/blok
