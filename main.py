@@ -1,6 +1,7 @@
 import supervisor
 from storage import getmount
 import board
+import time
 
 from kb import KMKKeyboard
 
@@ -29,25 +30,20 @@ keyboard.modules.append(split)
 """ OLED configuration """
 
 if side == SplitSide.LEFT:
+    random_number1 = int((time.monotonic() * 1000) % 10000)
+    random_number2 = int(((time.monotonic() * 1000) * 257) % 10000)
+
     oled_ext = Oled(
         OledData(
-            corner_one={0:OledReactionType.STATIC,1:["layer"]},
-            corner_two={0:OledReactionType.LAYER,1:["1", "2", "3"]},
-            corner_three={0:OledReactionType.STATIC,1:["Corne"]},
-            corner_four={0:OledReactionType.LAYER,1:["qwerty", "nums", "func"]}
+            corner_one={0:OledReactionType.STATIC,1:["crkbd"]},
+            corner_two ={0:OledReactionType.STATIC,1:[f"  {random_number2:04d}"]},
+            corner_three={0:OledReactionType.LAYER,1:["qwerty", "nums", "func"]},
+            corner_four ={0:OledReactionType.STATIC,1:[f"  {random_number1:04d}"]},
         ),
         toDisplay=OledDisplayMode.TXT,flip=False
     )
 else:
-    oled_ext = Oled(
-        OledData(
-            corner_one={0:OledReactionType.STATIC,1:["Corne"]},
-            corner_two={0:OledReactionType.STATIC,1:["Corne"]},
-            corner_three={0:OledReactionType.STATIC,1:["Corne"]},
-            corner_four={0:OledReactionType.STATIC,1:["Corne"]},
-        ),
-        toDisplay=OledDisplayMode.TXT,flip=False
-    )
+    oled_ext = Oled(OledData(image={0:OledReactionType.STATIC,1:["1.bmp"]}),toDisplay=OledDisplayMode.IMG,flip=False)
 
 
 keyboard.extensions.append(oled_ext)
