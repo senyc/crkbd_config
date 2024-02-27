@@ -6,7 +6,7 @@ echo "mounting drive $(sudo fdisk -l | grep 15M | cut -d' ' -f1)"
 sudo mount -o uid=1000 "$(sudo fdisk -l | grep 15M | cut -d' ' -f1)" ~/blok
 
 echo "Copying all files over from repo"
-sleep 4
+sleep 3
 cp  ~/crkbd_kmk/kb.py ~/blok/kb.py
 cp  ~/crkbd_kmk/main.py ~/blok/main.py
 cp  -r ~/crkbd_kmk/kmk ~/blok/kmk
