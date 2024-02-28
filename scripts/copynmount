@@ -3,12 +3,15 @@ echo "starting..."
 
 echo "mounting drive $(sudo fdisk -l | grep 15M | cut -d' ' -f1)"
 
-sudo mount -o uid=1000 "$(sudo fdisk -l | grep 15M | cut -d' ' -f1)" ~/blok
+# Assumes that the drive has 15M of storage (blok)
+sudo mount -o uid="$(id -u)" -o gid="$(id -g)" "$(sudo fdisk -l | grep 15M | cut -d' ' -f1)" ~/blok
 
 echo "Copying all files over from repo"
 sleep 3
-cp  ~/crkbd_kmk/kb.py ~/blok/kb.py
-cp  ~/crkbd_kmk/main.py ~/blok/main.py
-cp  -r ~/crkbd_kmk/kmk ~/blok/kmk
-cp  -r ~/crkbd_kmk/lib ~/blok/lib
-cp  ~/crkbd_kmk/settings.toml ~/blok/settings.toml
+
+cp -r  ~/crkbd_kmk/*.bmp ~/blok/
+cp ~/crkbd_kmk/kb.py ~/blok/kb.py
+cp ~/crkbd_kmk/main.py ~/blok/main.py
+cp ~/crkbd_kmk/settings.toml ~/blok/settings.toml
+cp -rT ~/crkbd_kmk/kmk ~/blok/kmk
+cp -rT ~/crkbd_kmk/lib ~/blok/lib
