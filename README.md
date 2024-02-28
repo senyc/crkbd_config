@@ -1,3 +1,5 @@
-# crkbd_kmk
+# crkbd_config
 
-Contains kmk config for crkbd
+Contains config for crkbd
+
+- currently using kmk
