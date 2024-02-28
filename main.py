@@ -19,6 +19,7 @@ from kmk.modules.split import Split, SplitSide
 
 keyboard = KMKKeyboard()
 keyboard.debug_enabled = False
+keyboard.extensions.append(MediaKeys())
 
 """ Layers configuration """
 
@@ -114,7 +115,6 @@ keyboard.keymap = [
 
 keyboard.modules.append(split)
 
-keyboard.extensions.append(MediaKeys())
 keyboard.extensions.append(oled_ext)
 keyboard.extensions.append(rgb_ext)
 
