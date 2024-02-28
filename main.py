@@ -1,7 +1,8 @@
-import supervisor
-from storage import getmount
 import board
+import supervisor
 import time
+
+from storage import getmount
 
 from kb import KMKKeyboard
 
@@ -11,23 +12,25 @@ from kmk.extensions.peg_rgb_matrix import Rgb_matrix
 from kmk.extensions.peg_rgb_matrix import Rgb_matrix,Rgb_matrix_data,Color
 from kmk.hid import HIDModes
 from kmk.keys import KC
-from kmk.modules.layers import Layers 
+from kmk.modules.layers import Layers
 from kmk.modules.split import Split, SplitSide
 
-keyboard = KMKKeyboard()
-layers_ext = Layers()
-keyboard.modules.append(layers_ext)
+""" Keyboard configuration """
 
+keyboard = KMKKeyboard()
 keyboard.debug_enabled = False
+
+""" Layers configuration """
+
+layers_ext = Layers()
 
 """ Split configuration """
 
-side = SplitSide.RIGHT if str(getmount('/').label)[-1] == 'R' else SplitSide.LEFT
-
 split = Split(use_pio=True)
-keyboard.modules.append(split)
 
 """ OLED configuration """
+
+side = SplitSide.RIGHT if str(getmount('/').label)[-1] == 'R' else SplitSide.LEFT
 
 if side == SplitSide.LEFT:
     random_number1 = int((time.monotonic() * 1000) % 10000)
@@ -35,39 +38,44 @@ if side == SplitSide.LEFT:
 
     oled_ext = Oled(
         OledData(
-            corner_one={0:OledReactionType.STATIC,1:["crkbd"]},
-            corner_two ={0:OledReactionType.STATIC,1:[f"  {random_number2:04d}"]},
-            corner_three={0:OledReactionType.LAYER,1:["qwerty", "nums", "func"]},
-            corner_four ={0:OledReactionType.STATIC,1:[f"  {random_number1:04d}"]},
+            corner_one={0:OledReactionType.LAYER,1:["qwerty", "nums", "func"]},
+            corner_two={0:OledReactionType.STATIC,1:[f"  {random_number2:04d}"]},
+            corner_three={0:OledReactionType.STATIC,1:["crkbd"]},
+            corner_four={0:OledReactionType.STATIC,1:[f"  {random_number1:04d}"]},
         ),
         toDisplay=OledDisplayMode.TXT,flip=False
     )
 else:
-    oled_ext = Oled(OledData(image={0:OledReactionType.STATIC,1:["1.bmp"]}),toDisplay=OledDisplayMode.IMG,flip=False)
+    oled_ext = Oled(
+        OledData(
+            image={0:OledReactionType.STATIC,1:["1.bmp"]}
+        ),
+            toDisplay=OledDisplayMode.IMG,flip=False
+    )
 
-
-keyboard.extensions.append(oled_ext)
 
 """ LED configuration """
 
 rgb_matrix=Rgb_matrix_data(
-    keys=[Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,
-          Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,
-          Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,
-          Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE],
-    underglow=[Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE]
+    keys=[
+        Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE,
+        Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE,
+        Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE,
+        Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE
+          ],
+    underglow=[
+        Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE
+    ]
 )
 
 rgb_ext = Rgb_matrix(split=True,ledDisplay=rgb_matrix, disable_auto_write=True)
-keyboard.extensions.append(rgb_ext)
 
 """ Keymap configuration """
 
-keyboard.extensions.append(MediaKeys())
 
 """
 GESC: Escape unless selected with super, then ` if shift then ~
-BKDL: backspace unless selected with super, then del 
+BKDL: backspace unless selected with super, then del
 """
 keyboard.keymap = [
     [
@@ -92,6 +100,13 @@ keyboard.keymap = [
         KC.TRNS, KC.TO(0), KC.TRNS, KC.TRNS, KC.TO(1),KC.TRNS
     ]
 ]
+
+keyboard.modules.append(layers_ext)
+keyboard.modules.append(split)
+
+keyboard.extensions.append(MediaKeys())
+keyboard.extensions.append(oled_ext)
+keyboard.extensions.append(rgb_ext)
 
 
 if __name__ == "__main__":
