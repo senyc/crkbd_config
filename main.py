@@ -10,6 +10,7 @@ from kmk.extensions.media_keys import MediaKeys
 from kmk.extensions.peg_oled_display import Oled, OledData, OledDisplayMode, OledReactionType
 from kmk.extensions.peg_rgb_matrix import Rgb_matrix
 from kmk.extensions.peg_rgb_matrix import Rgb_matrix,Rgb_matrix_data,Color
+
 from kmk.hid import HIDModes
 from kmk.keys import KC
 from kmk.modules.layers import Layers
@@ -77,18 +78,19 @@ rgb_ext = Rgb_matrix(split=True,ledDisplay=rgb_matrix, disable_auto_write=True)
 
 """ Keymap configuration """
 
-
 """
 GESC: Escape unless selected with super, then ` if shift then ~
 BKDL: backspace unless selected with super, then del
 """
+
+LGUI = KC.HT(KC.LGUI(KC.O), KC.LGUI)
 keyboard.keymap = [
     [
         KC.GESC, KC.Q, KC.W, KC.E, KC.R, KC.T, KC.Y, KC.U, KC.I, KC.O, KC.P, KC.BKDL,
         KC.LCTRL, KC.A, KC.S, KC.D, KC.F, KC.G, KC.H, KC.J, KC.K, KC.L, KC.SCLN, KC.QUOT,
         KC.LSFT, KC.Z, KC.X, KC.C, KC.V, KC.B, KC.N, KC.M, KC.COMMA, KC.DOT, KC.SLASH, KC.RSFT,
 
-        KC.LGUI, KC.MO(1), KC.SPC, KC.TAB, KC.MO(2), KC.RALT
+        LGUI, KC.MO(1), KC.SPC, KC.TAB, KC.MO(2), KC.RALT
     ],
     [
         KC.TRNS, KC.EXCLAIM, KC.AT, KC.HASH, KC.DOLLAR, KC.PERCENT, KC.CIRCUMFLEX, KC.AMPERSAND, KC.ASTERISK, KC.LPRN, KC.RPRN, KC.ENT,
