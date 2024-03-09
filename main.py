@@ -93,11 +93,11 @@ FUNC = KC.MO(2)
 """BKDL: backspace unless selected with super, then del"""
 keyboard.keymap = [
     [
-        KC.ESC, KC.Q, KC.W, KC.E, KC.R, KC.T, KC.Y, KC.U, KC.I, KC.O, KC.P, KC.BKDL,
+        KC.ESC, KC.Q, KC.W, KC.E, KC.R, KC.T, KC.Y, KC.U, KC.I, KC.O, KC.P, RALT,
         LCTRL, KC.A, KC.S, KC.D, KC.F, KC.G, KC.H, KC.J, KC.K, KC.L, KC.SCLN, KC.QUOT,
         KC.LSFT, KC.Z, KC.X, KC.C, KC.V, KC.B, KC.N, KC.M, KC.COMMA, KC.DOT, KC.SLASH, RSFT,
 
-        LGUI, NUMS, KC.SPC, KC.TAB, FUNC, RALT
+        LGUI, NUMS, KC.SPC, KC.TAB, FUNC, KC.BKDL
     ],
     [
         KC.TRNS, KC.EXCLAIM, KC.AT, KC.HASH, KC.DOLLAR, KC.PERCENT, KC.CIRCUMFLEX, KC.AMPERSAND, KC.ASTERISK, KC.LPRN, KC.RPRN, KC.TRNS,
