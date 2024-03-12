@@ -24,7 +24,8 @@ class KMKKeyboard(_KMKKeyboard):
                 26,21,20,15,12,7,34,39,42,47,48,53,
                 14,13,6,33,40,41,
                 2,1,0,27,28,29,3,4,5,32,31,30]
-    brightness_limit = 0.01
+    # This is actually just the default
+    brightness_limit = 0.02
     num_pixels = 54
     # flake8: noqa
     coord_mapping = [

@@ -76,6 +76,8 @@ rgb_matrix=Rgb_matrix_data(
 )
 
 rgb_ext = Rgb_matrix(split=True,ledDisplay=rgb_matrix, disable_auto_write=True)
+# Lowers the increase/decrease from the default of .1
+rgb_ext.brightness_step = 0.01
 keyboard.extensions.append(rgb_ext)
 
 """ Keymap configuration """
@@ -109,7 +111,7 @@ keyboard.keymap = [
     [
         KC.TRNS, KC.F1, KC.F2, KC.F3, KC.F4, KC.F5, KC.F6, KC.F7, KC.F8, KC.F9, KC.F10, KC.TRNS,
         KC.TRNS, KC.F11, KC.F12, KC.PGUP, KC.PGDN, KC.PSCR, KC.LEFT, KC.DOWN, KC.UP, KC.RIGHT, KC.NO, KC.TRNS,
-        KC.TRNS, KC.AUDIO_VOL_DOWN, KC.AUDIO_VOL_UP, KC.MEDIA_PREV_TRACK, KC.MEDIA_PLAY_PAUSE, KC.MEDIA_NEXT_TRACK, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.TRNS,
+        KC.TRNS, KC.AUDIO_VOL_DOWN, KC.AUDIO_VOL_UP, KC.MEDIA_PREV_TRACK, KC.MEDIA_PLAY_PAUSE, KC.MEDIA_NEXT_TRACK, KC.RGB_TOG, KC.RGB_BRD, KC.RGB_BRI, KC.NO, KC.NO, KC.TRNS,
 
         KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS
     ],
