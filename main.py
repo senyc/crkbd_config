@@ -9,6 +9,7 @@ from kmk.extensions.media_keys import MediaKeys
 from kmk.extensions.peg_oled_display import Oled, OledData, OledDisplayMode, OledReactionType
 from kmk.extensions.peg_rgb_matrix import Rgb_matrix
 from kmk.extensions.peg_rgb_matrix import Rgb_matrix,Rgb_matrix_data,Color
+from kmk.modules.holdtap import HoldTapRepeat
 
 from kmk.hid import HIDModes
 from kmk.keys import KC
@@ -87,12 +88,14 @@ LGUI = KC.HT(KC.LGUI(KC.O), KC.LGUI)
 # cycles volume output (environment specific)
 VOLUME_CYCLE = KC.LGUI(KC.S)
 
-RALT = KC.HT(KC.ENT, KC.RALT)
-LCTRL = KC.HT(KC.UNDERSCORE, KC.LCTRL)
-RSFT = KC.HT(KC.MINUS, KC.RSFT)
+LCTRL = KC.LCTRL
+RSFT = KC.RSFT
 
-NUMS = KC.MO(1)
-FUNC = KC.MO(2)
+# On repeat tap send the tap key
+RALT = KC.HT(KC.ENT, KC.RALT, repeat=HoldTapRepeat.TAP)
+# Lower the amount of time to send a tap since we type numbers a lot
+NUMS_UNDERSCORE = KC.LT(1, KC.UNDERSCORE, tap_time=180, repeat=HoldTapRepeat.TAP)
+FUNC_MINUS = KC.LT(2, KC.MINUS, repeat=HoldTapRepeat.TAP)
 
 keyboard.keymap = [
     [
@@ -100,7 +103,7 @@ keyboard.keymap = [
         LCTRL, KC.A, KC.S, KC.D, KC.F, KC.G, KC.H, KC.J, KC.K, KC.L, KC.SCLN, KC.QUOT,
         KC.LSFT, KC.Z, KC.X, KC.C, KC.V, KC.B, KC.N, KC.M, KC.COMMA, KC.DOT, KC.SLASH, RSFT,
 
-        LGUI, NUMS, KC.SPC, KC.TAB, FUNC, KC.BKDL
+        LGUI, NUMS_UNDERSCORE, KC.SPC, KC.TAB, FUNC_MINUS, KC.BKDL
     ],
     [
         KC.TRNS, KC.EXCLAIM, KC.AT, KC.HASH, KC.DOLLAR, KC.PERCENT, KC.CIRCUMFLEX, KC.AMPERSAND, KC.ASTERISK, KC.LPRN, KC.RPRN, KC.TRNS,
