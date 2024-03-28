@@ -84,7 +84,7 @@ keyboard.extensions.append(rgb_ext)
 """ Keymap configuration """
 
 # Uses omnipicker (environment specific) on tap
-LGUI = KC.HT(KC.LGUI(KC.O), KC.LGUI)
+LGUI = KC.HT(KC.LGUI(KC.SCLN), KC.LGUI)
 # cycles volume output (environment specific)
 VOLUME_CYCLE = KC.LGUI(KC.S)
 
