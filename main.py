@@ -88,27 +88,25 @@ LGUI = KC.HT(KC.LGUI(KC.SCLN), KC.LGUI)
 # cycles volume output (environment specific)
 VOLUME_CYCLE = KC.LGUI(KC.S)
 
-LCTRL = KC.LCTRL
-RSFT = KC.RSFT
-
 # On repeat tap send the tap key
 RALT = KC.HT(KC.ENT, KC.RALT, repeat=HoldTapRepeat.TAP)
-# Lower the amount of time to send a tap since we type numbers a lot
-NUMS_UNDERSCORE = KC.LT(1, KC.UNDERSCORE, tap_time=180, repeat=HoldTapRepeat.TAP)
-FUNC_MINUS = KC.LT(2, KC.MINUS, repeat=HoldTapRepeat.TAP)
+RSFT = KC.HT(KC.UNDERSCORE, KC.RSFT, repeat=HoldTapRepeat.TAP)
+# Since we don't use this layer as frequently as LSFT or the number layer it makes sense
+# to also use it for the minus character
+FUNC_MINUS = KC.LT(2, KC.MINUS, repeat=HoldTapRepeat.TAP, tap_time=220)
 
 keyboard.keymap = [
     [
         KC.GESC, KC.Q, KC.W, KC.E, KC.R, KC.T, KC.Y, KC.U, KC.I, KC.O, KC.P, RALT,
-        LCTRL, KC.A, KC.S, KC.D, KC.F, KC.G, KC.H, KC.J, KC.K, KC.L, KC.SCLN, KC.QUOT,
+        KC.LCTRL, KC.A, KC.S, KC.D, KC.F, KC.G, KC.H, KC.J, KC.K, KC.L, KC.SCLN, KC.QUOT,
         KC.LSFT, KC.Z, KC.X, KC.C, KC.V, KC.B, KC.N, KC.M, KC.COMMA, KC.DOT, KC.SLASH, RSFT,
 
-        LGUI, NUMS_UNDERSCORE, KC.SPC, KC.TAB, FUNC_MINUS, KC.BKDL
+        LGUI, KC.MO(1), KC.SPC, KC.TAB, FUNC_MINUS, KC.BKDL
     ],
     [
         KC.TRNS, KC.EXCLAIM, KC.AT, KC.HASH, KC.DOLLAR, KC.PERCENT, KC.CIRCUMFLEX, KC.AMPERSAND, KC.ASTERISK, KC.LPRN, KC.RPRN, KC.TRNS,
         KC.TRNS, KC.N1, KC.N2, KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8, KC.N9, KC.N0, KC.TRNS,
-        KC.TRNS, KC.PIPE, KC.PLUS, KC.EQUAL, KC.LEFT_CURLY_BRACE, KC.LBRACKET, KC.RBRACKET, KC.RIGHT_CURLY_BRACE, KC.LEFT_ANGLE_BRACKET, KC.RIGHT_ANGLE_BRACKET, KC.BSLASH, KC.TRNS,
+        KC.TRNS, KC.PIPE, KC.BSLASH, KC.PLUS, KC.EQUAL, KC.LEFT_CURLY_BRACE, KC.RIGHT_CURLY_BRACE, KC.LBRACKET, KC.LEFT_ANGLE_BRACKET, KC.RIGHT_ANGLE_BRACKET, KC.RBRACKET, KC.TRNS,
 
         KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS,
     ],
