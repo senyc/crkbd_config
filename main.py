@@ -28,6 +28,7 @@ keyboard.extensions.append(MediaKeys())
 combo_layers = {
     (1, 2): 3,
 }
+
 keyboard.modules.append(Layers(combo_layers))
 
 """ Split configuration """
@@ -86,44 +87,55 @@ keyboard.extensions.append(rgb_ext)
 # Uses omnipicker (environment specific) on tap
 LGUI = KC.HT(KC.LGUI(KC.SCLN), KC.LGUI)
 # cycles volume output (environment specific)
-VOLUME_CYCLE = KC.LGUI(KC.S)
+VCYCL = KC.LGUI(KC.S)
 
-# On repeat tap send the tap key
 RALT = KC.HT(KC.ENT, KC.RALT, repeat=HoldTapRepeat.TAP)
 RSFT = KC.HT(KC.UNDERSCORE, KC.RSFT, repeat=HoldTapRepeat.TAP)
-# Since we don't use this layer as frequently as LSFT or the number layer it makes sense
-# to also use it for the minus character
+
+# Since we don't use this layer as frequently as LSFT also use it for minus
 FUNC_MINUS = KC.LT(2, KC.MINUS, repeat=HoldTapRepeat.TAP, tap_time=220)
 
 keyboard.keymap = [
     [
-        KC.GESC, KC.Q, KC.W, KC.E, KC.R, KC.T, KC.Y, KC.U, KC.I, KC.O, KC.P, RALT,
-        KC.LCTRL, KC.A, KC.S, KC.D, KC.F, KC.G, KC.H, KC.J, KC.K, KC.L, KC.SCLN, KC.QUOT,
-        KC.LSFT, KC.Z, KC.X, KC.C, KC.V, KC.B, KC.N, KC.M, KC.COMMA, KC.DOT, KC.SLASH, RSFT,
-
-        LGUI, KC.MO(1), KC.SPC, KC.TAB, FUNC_MINUS, KC.BKDL
+    # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
+        KC.GESC,   KC.Q,  KC.W,  KC.E,  KC.R,   KC.T,     KC.Y,  KC.U,  KC.I,     KC.O,    KC.P,      RALT,
+    # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
+        KC.LCTRL,  KC.A,  KC.S,  KC.D,  KC.F,   KC.G,     KC.H,  KC.J,  KC.K,     KC.L,    KC.SCLN,   KC.QUOT, 
+    # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
+        KC.LSFT,   KC.Z,  KC.X,  KC.C,  KC.V,   KC.B,     KC.N,  KC.M,  KC.COMM,  KC.DOT,  KC.SLASH,  RSFT, 
+    # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
+                            LGUI,  KC.MO(1),  KC.SPC,     KC.TAB,  FUNC_MINUS,  KC.BKDL
     ],
     [
-        KC.TRNS, KC.EXCLAIM, KC.AT, KC.HASH, KC.DOLLAR, KC.PERCENT, KC.CIRCUMFLEX, KC.AMPERSAND, KC.ASTERISK, KC.LPRN, KC.RPRN, KC.TRNS,
-        KC.TRNS, KC.N1, KC.N2, KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8, KC.N9, KC.N0, KC.TRNS,
-        KC.TRNS, KC.BSLASH, KC.PIPE, KC.PLUS, KC.EQUAL, KC.LEFT_CURLY_BRACE, KC.RIGHT_CURLY_BRACE, KC.LBRACKET, KC.COMMA, KC.DOT, KC.RBRACKET, KC.TRNS,
-
-        KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS,
+    # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.EXLM,  KC.AT,   KC.HASH,  KC.DLR,  KC.PERC,      KC.CIRC,  KC.AMPT,    KC.ASTR,  KC.LPRN,  KC.RPRN,  KC.TRNS, 
+    # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.N1,    KC.N2,   KC.N3,    KC.N4,   KC.N5,        KC.N6,    KC.N7,      KC.N8,    KC.N9,    KC.N0,    KC.TRNS,
+    # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.LBRC,  KC.RBRC, KC.PLUS,  KC.EQL,  KC.LCBR,      KC.RCBR,  KC.BSLASH,  KC.TRNS,  KC.TRNS,  KC.TRNS,  KC.TRNS,
+    # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
+                                    KC.TRNS,  KC.TRNS,  KC.TRNS,      KC.TRNS,  KC.TRNS,  KC.TRNS, 
     ],
     [
-        KC.TRNS, KC.F1, KC.F2, KC.F3, KC.F4, KC.F5, KC.F6, KC.F7, KC.F8, KC.F9, KC.F10, KC.TRNS,
-        KC.TRNS, KC.F11, KC.F12, KC.PGUP, KC.PGDN, KC.PSCR, KC.LEFT, KC.DOWN, KC.UP, KC.RIGHT, KC.AUDIO_MUTE, VOLUME_CYCLE,
-        KC.TRNS, KC.AUDIO_VOL_DOWN, KC.AUDIO_VOL_UP, KC.MEDIA_PREV_TRACK, KC.MEDIA_PLAY_PAUSE, KC.MEDIA_NEXT_TRACK, KC.RGB_TOG, KC.RGB_BRD, KC.RGB_BRI, KC.NO, KC.NO, KC.TRNS,
-
-        KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS
+    # ----+--------+--------+--------+--------+-------+-----+-------+-------++--------+--------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.F1,       KC.F2,       KC.F3,       KC.F4,    KC.F5,       KC.F6,    KC.F7,    KC.F8,    KC.F9,     KC.F10,   KC.TRNS, 
+    # ----+--------+--------+--------+--------+-------+-----+-------+-------++--------+--------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.F11,      KC.F12,      KC.PGUP,     KC.PGDN,  KC.PSCR,     KC.LEFT,  KC.DOWN,  KC.UP,    KC.RIGHT,  KC.MUTE,  VCYCL, 
+    # ----+--------+--------+--------+--------+-------+-----+-------+-------++--------+--------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.RGB_TOG,  KC.RGB_BRD,  KC.RGB_BRI,  KC.NO,    KC.NO,       KC.VOLD,  KC.MPRV,  KC.MPLY,  KC.MNXT,   KC.VOLU,  KC.TRNS, 
+    # ----+--------+--------+--------+--------+-------+-----+-------+-------++--------+--------+--------+--------+--------+--------+--------+----
+                                              KC.TRNS,  KC.TRNS,  KC.TRNS,      KC.TRNS,  KC.TRNS,  KC.TRNS, 
     ],
     [
-        KC.TRNS, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.TRNS,
-        KC.TRNS, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.TRNS,
-        KC.TRNS, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.NO, KC.TRNS,
-
-        KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS, KC.TRNS
-    ]
+    # ----+--------+--------+--------+----------+---------++-------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.NO,      KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.TRNS, 
+    # ----+--------+--------+--------+----------+---------++-------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.NO,      KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.TRNS, 
+    # ----+--------+--------+--------+----------+---------++-------+--------+--------+--------+--------+--------+----
+        KC.TRNS,  KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.NO,      KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.NO,  KC.TRNS, 
+    # ----+--------+--------+--------+----------+---------++-------+--------+--------+--------+--------+--------+----
+                            KC.TRNS,  KC.TRNS,  KC.TRNS,      KC.TRNS,  KC.TRNS,  KC.TRNS, 
+    ],
 ]
 
 if __name__ == "__main__":
