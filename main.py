@@ -84,16 +84,12 @@ keyboard.extensions.append(rgb_ext)
 
 """ Keymap configuration """
 
-# Uses omnipicker (environment specific) on tap
-LGUI = KC.HT(KC.LGUI(KC.SCLN), KC.LGUI)
 # cycles volume output (environment specific)
 VCYCL = KC.LGUI(KC.S)
 
 RALT = KC.HT(KC.ENT, KC.RALT, repeat=HoldTapRepeat.TAP)
-RSFT = KC.HT(KC.UNDERSCORE, KC.RSFT, repeat=HoldTapRepeat.TAP)
 
 # Since we don't use this layer as frequently as LSFT also use it for minus
-FUNC_MINUS = KC.LT(2, KC.MINUS, repeat=HoldTapRepeat.TAP, tap_time=220)
 
 keyboard.keymap = [
     [
@@ -102,23 +98,23 @@ keyboard.keymap = [
     # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
         KC.LCTRL,  KC.A,  KC.S,  KC.D,  KC.F,   KC.G,     KC.H,  KC.J,  KC.K,     KC.L,    KC.SCLN,   KC.QUOT, 
     # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
-        KC.LSFT,   KC.Z,  KC.X,  KC.C,  KC.V,   KC.B,     KC.N,  KC.M,  KC.COMM,  KC.DOT,  KC.SLASH,  RSFT, 
+        KC.LSFT,   KC.Z,  KC.X,  KC.C,  KC.V,   KC.B,     KC.N,  KC.M,  KC.COMM,  KC.DOT,  KC.SLASH,  KC.MINUS, 
     # ----+--------+--------+--------+--------+-------++--------+--------+--------+--------+--------+--------+----
-                            LGUI,  KC.MO(1),  KC.SPC,     KC.TAB,  FUNC_MINUS,  KC.BKDL
+                            KC.LGUI,  KC.MO(1),  KC.SPC,     KC.TAB,  KC.MO(2),  KC.BKDL
     ],
     [
     # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
-        KC.TRNS,  KC.EXLM,  KC.AT,   KC.HASH,  KC.DLR,  KC.PERC,      KC.CIRC,  KC.AMPR,    KC.ASTR,  KC.LPRN,  KC.RPRN,  KC.TRNS, 
+        KC.TRNS,  KC.EXLM,  KC.AT,    KC.HASH,  KC.DLR,   KC.PERC,    KC.CIRC,  KC.AMPR,    KC.ASTR,  KC.LPRN,  KC.RPRN,  KC.TRNS, 
     # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
-        KC.TRNS,  KC.N1,    KC.N2,   KC.N3,    KC.N4,   KC.N5,        KC.N6,    KC.N7,      KC.N8,    KC.N9,    KC.N0,    KC.TRNS,
+        KC.TRNS,  KC.N1,    KC.N2,    KC.N3,    KC.N4,    KC.N5,      KC.N6,    KC.N7,      KC.N8,    KC.N9,    KC.N0,    KC.TRNS,
     # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
-        KC.TRNS,  KC.LBRC,  KC.RBRC, KC.PLUS,  KC.EQL,  KC.LCBR,      KC.RCBR,  KC.BSLASH,  KC.TRNS,  KC.TRNS,  KC.TRNS,  KC.TRNS,
+        KC.TRNS,  KC.LBRC,  KC.RBRC,  KC.PIPE,  KC.LCBR,  KC.RCBR,    KC.PLUS,  KC.EQL,  KC.TRNS,  KC.TRNS,  KC.BSLASH,  KC.TRNS,
     # ----+--------+--------+--------+--------+-------+-----+-----++--------+--------+--------+--------+--------+--------+--------+----
                                     KC.TRNS,  KC.TRNS,  KC.TRNS,      KC.TRNS,  KC.TRNS,  KC.TRNS, 
     ],
     [
     # ----+--------+--------+--------+--------+-------+-----++------+---------++--------+--------+--------+--------+--------+--------+----
-        KC.TRNS,  KC.F1,  KC.F2,  KC.F3,   KC.F4,  KC.F5,         KC.RGB_TOG,  KC.RGB_BRD,  KC.RGB_BRI,  KC.NO,     KC.NO,    KC.TRNS, 
+        KC.TRNS,  KC.F1,  KC.F2,  KC.F3,   KC.F4,  KC.F5,         KC.RGB_TOG,  KC.RGB_BRD,  KC.RGB_BRI,  KC.PSCREEN,     KC.NO,    KC.TRNS, 
     # ----+--------+--------+--------+--------+-------+-----++------+---------++--------+--------+--------+--------+--------+--------+----
         KC.TRNS,  KC.F7,  KC.F8,  KC.F9,  KC.F10,  KC.F11,        KC.LEFT,     KC.DOWN,     KC.UP,       KC.RIGHT,  KC.MUTE,  VCYCL, 
     # ----+--------+--------+--------+--------+-------+-----++------+---------++--------+--------+--------+--------+--------+--------+----
