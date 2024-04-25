@@ -9,9 +9,9 @@ sudo mount -o uid="$(id -u)" -o gid="$(id -g)" "$(sudo fdisk -l | grep 15M | cut
 echo "Copying all files over from repo"
 sleep 3
 
-cp -r  ~/crkbd_config/*.bmp ~/blok/
-cp ~/crkbd_config/kb.py ~/blok/kb.py
-cp ~/crkbd_config/main.py ~/blok/main.py
-cp ~/crkbd_config/settings.toml ~/blok/settings.toml
-cp -rT ~/crkbd_config/kmk ~/blok/kmk
-cp -rT ~/crkbd_config/lib ~/blok/lib
+cp -r  ~/projects/crkbd_config/*.bmp ~/blok/
+cp ~/projects/crkbd_config/kb.py ~/blok/kb.py
+cp ~/projects/crkbd_config/main.py ~/blok/main.py
+cp ~/projects/crkbd_config/settings.toml ~/blok/settings.toml
+cp -rT ~/projects/crkbd_config/kmk ~/blok/kmk
+cp -rT ~/projects/crkbd_config/lib ~/blok/lib
